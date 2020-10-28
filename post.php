@@ -3,13 +3,12 @@ require_once('phpQuery-onefile.php');
 
 class Post
 {
-	const SLACK_URL = 'https://hooks.slack.com/services/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';
 	const ZENN_URL = 'https://zenn.dev';
 
 	public function __construct()
 	{
 		$message_post = $this->getZennContent(self::ZENN_URL);
-		$this->postSlack(self::SLACK_URL, $message_post);
+		$this->postSlack(getenv('SLACK_URL'), $message_post);
 	}
 	public function getZennContent($zenn_url) {
 		$html = file_get_contents($zenn_url);
